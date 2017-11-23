@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SOSPU</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active" ><a routerLink="">Home</a></li>
+      <li routerLinkActive="active"><a >Cadastrar Itens</a></li>
+      <li routerLinkActive="active" ><a >Estoque</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a routerLink="add"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" >
+    <router-outlet></router-outlet>
+</div>
+
+
+
+<!--
+<div style="padding: 20px;">
+	<h2 style="color: blue">JSA - Angular Application!</h2>
+	<nav>
+		<a routerLink="customer" class="btn btn-primary active" role="button" routerLinkActive="active">Customers</a>
+		<a routerLink="add"	class="btn btn-primary active" role="button" routerLinkActive="active">Add</a>
+		<a routerLink="findbylastname"	class="btn btn-primary active" role="button" routerLinkActive="active">Search</a>
+	</nav>
+	<router-outlet></router-outlet>
+</div>
+
+-->
