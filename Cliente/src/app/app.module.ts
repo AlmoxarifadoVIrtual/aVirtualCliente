@@ -16,6 +16,19 @@ import { AuthGuardGuard} from "./authGuard/auth-guard.guard";
 
 import {enableProdMode} from '@angular/core';
 import {SearchCustomersComponent} from './search-customers/search-customers.component';
+import { TokenComponent } from './token/token.component';
+import { ValideTokenComponent } from './token/valide-token/valide-token.component';
+import { SignOutComponent } from './token/sign-out/sign-out.component';
+import { SignInComponent } from './token/sign-in/sign-in.component';
+import { SignInOauthComponent } from './token/sign-in-oauth/sign-in-oauth.component';
+import { OutputComponent } from './token/shared/output/output.component';
+import { RegisterComponent } from './token/register/register.component';
+import { ChangePasswordComponent } from './token/change-password/change-password.component';
+import { AccessResourceComponent } from './token/access-resource/access-resource.component';
+import {TokenService} from "./token/token.service";
+import {Angular2TokenService, A2tUiModule } from "angular2-token";
+
+
 
 @NgModule({
   declarations: [
@@ -25,15 +38,25 @@ import {SearchCustomersComponent} from './search-customers/search-customers.comp
     CreateCustomerComponent,
     SearchCustomersComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    TokenComponent,
+    ValideTokenComponent,
+    SignOutComponent,
+    SignInComponent,
+    SignInOauthComponent,
+    OutputComponent,
+    RegisterComponent,
+    ChangePasswordComponent,
+    AccessResourceComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    A2tUiModule
   ],
-  providers: [DataService, AuthGuardGuard, AuthenticationService],
+  providers: [DataService, AuthGuardGuard, AuthenticationService, TokenService, Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
