@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TokenService} from "../token.service";
-import { Angular2TokenService, A2tUiModule } from "angular2-token";
+import { Angular2TokenService } from "angular2-token";
 
 @Component({
   selector: 'app-sign-in-oauth',

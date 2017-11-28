@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TokenService } from "../token.service";
-import { Angular2TokenService, A2tUiModule, UpdatePasswordData} from "angular2-token";
+import { Angular2TokenService, UpdatePasswordData} from "angular2-token";
 
 @Component({
   selector: 'app-change-password',

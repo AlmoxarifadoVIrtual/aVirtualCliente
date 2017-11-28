@@ -11,7 +11,7 @@ import {TokenComponent } from "./token/token.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home',component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'customer', component: CustomersComponent},
   {path: 'add', component: CreateCustomerComponent},
   {path: 'login', component: TokenComponent},
