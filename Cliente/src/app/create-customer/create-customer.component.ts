@@ -1,5 +1,5 @@
-import {Customer} from '../customer';
-import {DataService} from '../data.service';
+import {Customer} from '../interfaces/customer';
+import {DataService} from '../services/data.service';
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 

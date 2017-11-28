@@ -3,9 +3,9 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
-import { Customer } from './customer';
+import { Customer } from '../interfaces/customer';
 import {AuthenticationService} from "./authentication.service";
-import {Credencial} from "./credencial";
+import {Credencial} from "../interfaces/credencial";
 
 
 
@@ -17,16 +17,6 @@ export class DataService {
 
   constructor(private http: Http, private authenticationService: AuthenticationService) {}
 
-  // get credentials
-  getCredentials(): Observable<Credencial[]> {
-    // add authorization header with jwt token
-    let headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
-    let options = new RequestOptions({ headers: headers });
-
-    // get users from api
-    return this.http.get('/login', options)
-      .map((response: Response) => response.json());
-  }
   // Get all customers
   getCustomers(): Promise<Customer[]> {
     return this.http.get(this.customersUrl)

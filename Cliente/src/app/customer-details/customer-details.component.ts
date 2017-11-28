@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Customer } from '../customer';
-import { DataService } from '../data.service';
+import { Customer } from '../interfaces/customer';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'customer-detail',

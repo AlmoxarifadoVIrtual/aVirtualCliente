@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Credencial} from "../credencial";
-import {DataService} from "../data.service";
+import {Credencial} from "../interfaces/credencial";
+import {DataService} from "../services/data.service";
 
 @Component({
   selector: 'app-home',
@@ -14,11 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // get credential from secure api end point
-    this.dataService.getCredentials()
-      .subscribe(credential => {
-        this.credential = credential;
-      });
+
   }
 
 }

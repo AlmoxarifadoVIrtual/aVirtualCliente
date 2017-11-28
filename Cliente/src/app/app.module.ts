@@ -7,17 +7,27 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {CustomerDetailsComponent} from './customer-details/customer-details.component';
 import {CustomersComponent} from './customers/customers.component';
-import {DataService} from './data.service';
+import {DataService} from './services/data.service';
 import {CreateCustomerComponent} from './create-customer/create-customer.component';
 import{ LoginComponent} from "./login/login.component";
 import { HomeComponent} from "./home/home.component";
-import {AuthenticationService} from "./authentication.service";
-import { AuthGuardGuard} from "./authGuard/auth-guard.guard";
+import {AuthenticationService} from "./services/authentication.service";
+//import { AuthGuardGuard} from "./authGuard/auth-guard.guard";
 
-import {enableProdMode} from '@angular/core';
+
 import {SearchCustomersComponent} from './search-customers/search-customers.component';
+import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
+import {LogginService} from "./services/loggin.service";
+
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    AppRoutingModule
+  ],
+  providers: [DataService, LogginService, AuthenticationService],
   declarations: [
     AppComponent,
     CustomerDetailsComponent,
@@ -25,15 +35,10 @@ import {SearchCustomersComponent} from './search-customers/search-customers.comp
     CreateCustomerComponent,
     SearchCustomersComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CadastrarProdutoComponent
+
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule
-  ],
-  providers: [DataService, AuthGuardGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

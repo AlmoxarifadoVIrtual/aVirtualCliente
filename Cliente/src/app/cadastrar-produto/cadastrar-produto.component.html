@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <h1 class="text-center">Cadastro de Produtos</h1>
+  <hr />
+  <div class="alert alert-success" role="alert" *ngIf="!cadastroSucesso">
+    Formulário enviado com sucesso! <br> {{produtosCadastrados()}}
+  </div>
+
+  <form  (ngSubmit)="cadastrarNovoProduto()">
+    <div class="form-group">
+      <label class="control-label" for="nomeProduto" >Nome</label>
+      <input type="text" class="form-control" name="nomeProduto"
+             id="nomeProduto"  ([ngModel])="nomeProduto">
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="codigoP">Quantidade</label>
+      <input type="text" class="form-control" name="codigoP"
+             id="codigoP" required="codigoP" [ngModel] = "codigoProduto">
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="quantidadeP">Quantidade</label>
+      <input type="text" class="form-control" name="quantidadeP"
+             id="quantidadeP" required="quantidade >0" [(ngModel)] = "quantidadeProduto">
+    </div>
+    <!--
+    <div class="form-group">
+      <label class="control-label" for="curso" >Curso</label>
+      <select name="curso" id="curso" class="form-control">
+        <option value="">Selecione</option>
+      </select>
+    </div>
+    -->
+    <hr />
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+</div>
