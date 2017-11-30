@@ -1,32 +1,37 @@
 import { Injectable } from '@angular/core';
 
-import { Credencial} from "../interfaces/credencial";
-import { Http, Headers, Response } from '@angular/http';
+
+import { Http, Headers, Response,RequestOptions } from '@angular/http';
 import { Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/map'
 
 
 @Injectable()
 export class LogginService {
 
-  public token: string;
+  //public token: string;
   loggedIn: Boolean = false;
   header = new Headers({'Content-Type': 'application/json'});
 
+
   constructor(private http: Http) {
-    this.loggedIn = !! localStorage.getItem('auth_token');
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+
+   // this.loggedIn = !! localStorage.getItem('auth_token');
+    //let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    //this.token = currentUser && currentUser.token;
+
   }
 
-  login(login, senha) {
+  login(login, senha): Observable<boolean>{
     console.log(JSON.stringify({login: login, senha: senha}));
-    console.log( this.header);
+
 
     return this.http.post(
       'acesso', JSON.stringify({login: login, senha: senha}), {headers : this.header}
-    ).map(res => res.json())
-      .map((res) => {
-        let token = res.json() && res.json().token;
+    ).map((response: Response) => {
+
+      let token: string = response.json() && response.json().token;
+      console.log(token);
         if (token) {
           // set token property
           this.token = token;

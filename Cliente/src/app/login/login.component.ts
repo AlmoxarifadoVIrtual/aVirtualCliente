@@ -22,8 +22,11 @@ export class LoginComponent implements OnInit {
   onSubmitLogin() {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
-      if ( result ){
+      if ( result === true ){
         this.router.navigate(['home']);
+      }else{
+        this.error = 'Username or password is incorrect';
+
       }
     });
   }
