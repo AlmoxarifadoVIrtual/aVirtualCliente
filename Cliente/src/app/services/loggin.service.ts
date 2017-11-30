@@ -23,7 +23,7 @@ export class LogginService {
     console.log( this.header);
 
     return this.http.post(
-      'login', JSON.stringify({login: login, senha: senha}), {headers : this.header}
+      'acesso', JSON.stringify({login: login, senha: senha}), {headers : this.header}
     ).map(res => res.json())
       .map((res) => {
         let token = res.json() && res.json().token;
