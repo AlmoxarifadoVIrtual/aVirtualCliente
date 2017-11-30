@@ -9,7 +9,7 @@ import {DataService} from "../services/data.service";
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  credential: Credencial[] = [];
+
 
   constructor(private dataService: DataService) { }
 

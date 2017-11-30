@@ -7,7 +7,8 @@
     <div class="form-group" >
       <label for="logincred">Username</label>
       <input type="text" class="form-control" id="logincred" name="logincred" [(ngModel)]="model.loginCred"   #logincred="ngModel" required />
-      <div *ngIf="f.submitted && !logincred.valid" class="help-block">Username is required</div>
+      <div [hidden]  *ngIf="logincred.invalid " class="alert alert-danger"> login is required
+      </div>
     </div>
 
     <div class="form-group" >
