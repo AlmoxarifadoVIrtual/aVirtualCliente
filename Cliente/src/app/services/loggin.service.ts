@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class LogginService {
 
-  //public token: string;
+  public token: string;
   loggedIn: Boolean = false;
   header = new Headers({'Content-Type': 'application/json'});
 
@@ -17,8 +17,8 @@ export class LogginService {
   constructor(private http: Http) {
 
    // this.loggedIn = !! localStorage.getItem('auth_token');
-    //let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //this.token = currentUser && currentUser.token;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.token = currentUser && currentUser.token;
 
   }
 
