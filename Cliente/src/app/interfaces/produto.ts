@@ -1,5 +1,10 @@
 export class Produto {
-  public nomeProduto: string;
-  public codigoProduto: string;
-  public quantidadeProduto: string;
+  id: any;
+  nomeProduto: string;
+  marcaProduto: string;
+  corProduto: string;
+  referenciaProduto: string;
+  descricaoProduto: string;
+  quantProduto: any;
+
 }

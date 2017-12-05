@@ -1,37 +1,39 @@
 <div class="jumbotron">
   <h1 class="text-center">Cadastro de Produtos</h1>
   <hr />
-  <div class="alert alert-success" role="alert" *ngIf="!cadastroSucesso">
+  <div [hidden] class="alert alert-success" role="alert" *ngIf="!cadastroSucesso">
     Formulário enviado com sucesso! <br> {{produtosCadastrados()}}
   </div>
 
-  <form  (ngSubmit)="cadastrarNovoProduto()">
-    <div class="form-group">
-      <label class="control-label" for="nomeProduto" >Nome</label>
-      <input type="text" class="form-control" name="nomeProduto"
-             id="nomeProduto"  ([ngModel])="nomeProduto">
+  <form method="POST" class="form form-group" (ngSubmit)="submit()" #listaCompraForm="ngForm">
+  <div class="form-group">
+    <label for="txtNombre">Nome</label>
+    <input type="text" id="txtNombre" name="txtNombre" [(ngModel)]="model.nomeProduto" />
+  </div>
+  <div class="form-group">
+    <label for="txtDescripcion">Descrição</label>
+    <input type="text" id="txtDescripcion" name="txtDescripcion" [(ngModel)]="model.descricaoProduto" />
+  </div>
+  <div class="form-group">
+    <label for="txtUds">Quantidade</label>
+    <input type="number" id="txtUds" name="txtUds" [(ngModel)]="model.quantProduto" />
+  </div>
+  <div class="form-group">
+    <label for="txtcor">cor</label>
+    <input type="text" id="txtcor" name="txtcor" [(ngModel)]="model.corProduto" />
+  </div>
+  <div class="form-group">
+    <label for="txtmarca">Marca Produto</label>
+    <input type="text" id="txtmarca" name="txtmarca" [(ngModel)]="model.marcaProduto" />
+  </div>
+  <div class="form-group">
+    <label for="txtref">Referência</label>
+    <input type="text" id="txtref" name="txtref" [(ngModel)]="model.referenciaProduto" />
+  </div>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <button type="submit" class="btn btn-primary">Confirmar</button>
     </div>
-    <div class="form-group">
-      <label class="control-label" for="codigoP">Quantidade</label>
-      <input type="text" class="form-control" name="codigoP"
-             id="codigoP" required="codigoP" [ngModel] = "codigoProduto">
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="quantidadeP">Quantidade</label>
-      <input type="text" class="form-control" name="quantidadeP"
-             id="quantidadeP" required="quantidade >0" [(ngModel)] = "quantidadeProduto">
-    </div>
-    <!--
-    <div class="form-group">
-      <label class="control-label" for="curso" >Curso</label>
-      <select name="curso" id="curso" class="form-control">
-        <option value="">Selecione</option>
-      </select>
-    </div>
-    -->
-    <hr />
-    <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </div>
-  </form>
-</div>
+  </div>
+</form>
+
