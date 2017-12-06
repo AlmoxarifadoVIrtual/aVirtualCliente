@@ -18,6 +18,7 @@ import {AuthenticationService} from "./services/authentication.service";
 import {SearchCustomersComponent} from './search-customers/search-customers.component';
 import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 import {LogginService} from "./services/loggin.service";
+import {ProdutoService} from "./services/produto.service";
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import {LogginService} from "./services/loggin.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [DataService, LogginService, AuthenticationService],
+  providers: [DataService, LogginService, AuthenticationService, ProdutoService],
   declarations: [
     AppComponent,
     CustomerDetailsComponent,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Produto} from "../interfaces/produto";
+import {ProdutoService} from "../services/produto.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,6 +11,16 @@ import { Produto} from "../interfaces/produto";
   styleUrls: ['./cadastrar-produto.component.css']
 })
 export class CadastrarProdutoComponent implements OnInit {
+
+  constructor(private router: Router, private produtoService: ProdutoService){
+
+  }
+
+  cadastrar(){
+
+  }
+
+
 
   ngOnInit() {
   }

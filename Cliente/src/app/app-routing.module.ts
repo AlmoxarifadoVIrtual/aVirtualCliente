@@ -11,7 +11,7 @@ import {CadastrarProdutoComponent} from "./cadastrar-produto/cadastrar-produto.c
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'customer', component: CustomersComponent},
   {path: 'add', component: CreateCustomerComponent},

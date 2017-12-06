@@ -24,20 +24,23 @@ export class LogginService {
 
   login(login, senha): Observable<boolean>{
     console.log(JSON.stringify({login: login, senha: senha}));
-
-
     return this.http.post(
       'acesso', JSON.stringify({login: login, senha: senha}), {headers : this.header}
-    ).map((response: Response) => {
+    ).map(response => {
+      console.log('response do service loggin' + response.status.valueOf());
+      console.log('response do service pra o token   ' + response.headers.);
 
-      let token: string = response.json() && response.json().token;
-      console.log(token);
-        if (token) {
+      let status = response.status.valueOf();
+
+      //let token: string = response.json() && response.json().token;
+      //console.log(token);
+        if (status === 200) {
+          this.loggedIn = true;
           // set token property
-          this.token = token;
+          //this.token = token;
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({ login: login, token: token }));
+          //localStorage.setItem('currentUser', JSON.stringify({ login: login, token: token }));
 
           // return true to indicate successful login
           return true;

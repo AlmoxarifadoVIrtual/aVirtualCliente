@@ -40,9 +40,15 @@ export class DataService {
       .then(() => null)
       .catch(this.handleError);
   }
-
+/*
   private handleError(error: any): Promise<any> {
     console.error('Error', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
+*/
+  private handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
+
 }
