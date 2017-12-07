@@ -28,7 +28,7 @@ export class LogginService {
       'acesso', JSON.stringify({login: login, senha: senha}), {headers : this.header}
     ).map(response => {
       console.log('response do service loggin' + response.status.valueOf());
-      console.log('response do service pra o token   ' + response.headers.);
+      console.log('response do service pra o token   ' + response.headers);
 
       let status = response.status.valueOf();
 
