@@ -15,24 +15,9 @@ export class ListarProdutoComponent implements OnInit {
   @Output() borrado: EventEmitter<Produto> = new EventEmitter<Produto>();
   @Output() modificado: EventEmitter<Produto> = new EventEmitter<Produto>();
 
-  displayProduto(produto : Produto) {
-    console.log(produto);
-  }
-/*
-  removerProduto(model: Produto){
-    this.produtoService.removerProduto(Produto(model)).subscribe( o => {
-      this.borrado.emit(model);
-    }, e => {
-      sessionStorage.removeItem('token');
-      this.router.navigate(['login']);
-    });
-  }
-*/
-  modificarProduto(model: Produto){
-    this.modificado.emit(model);
-      }
+    constructor(private produtoService: ProdutoService, private router: Router) { }
 
-  constructor(private produtoService: ProdutoService, private router: Router) { }
+
 
   ngOnInit() {
   }

@@ -16,8 +16,23 @@ export class CadastrarProdutoComponent implements OnInit {
 
   }
 
-  cadastrar(){
+  model: any = {};
+  error = '';
 
+  cadastrarProduto(){
+    console.log(this.model.nomeProduto + this.model.descricaoProduto + this.model.quantProduto +
+    this.model.corProduto + this.model.marcaProduto+ this.model.referenciaProduto);
+    this.produtoService.addProduto(this.model.nomeProduto, this.model.marcaProduto, this.model.corProduto,
+      this.model.referenciaProduto, this.model.quantProduto, this.model.descricaoProduto).subscribe( result =>{
+        console.log(result);
+
+    });
+
+  }
+
+  newProduto(){
+    this.produtoService.novoProduto();
+    this.router.navigate(['cadastrarP']);
   }
 
 

@@ -17,16 +17,36 @@ export class ProdutoService {
   produto: Produto;
   options = new Headers( {'Content-type': 'aplication/json'});
 
+  isAddProduto: boolean = false;
+
+  getIsAddProduto(){
+    return this.isAddProduto;
+  }
+
   getAllProdutos(): Observable<Produto[]>{
     return this.http.get('api/produtos').map(response => response.json());
   }
 
-  addProduto(produto: Produto): Observable<Produto>{
-   let  body = {nome: produto.nomeProduto, marca: produto.marcaProduto, cor: produto.corProduto,
-   referencia: produto.referenciaProduto, quantidade: produto.quantProduto, descricao: produto.descricaoProduto};
+  addProduto(nomeProduto,marcaProduto,corProduto,referenciaProduto,quantProduto,descricaoProduto): Observable<Produto>{
+   let  body = {nome: nomeProduto, marca: marcaProduto, cor: corProduto,
+   referencia: referenciaProduto, quantidade: quantProduto, descricao: descricaoProduto};
 
-    return this.http.post('api/usuarios', body, {headers: this.options}).map( response =>
-    response.status).catch(this.handleError);
+    return this.http.post('api/usuarios', JSON.stringify(body), {headers: this.options}).map( response => {
+      let status = response.status.valueOf();
+      if (status=== 200){
+        this.isAddProduto = true;
+      }
+      else{
+        return  this.handleError;
+      }
+    }).catch(this.handleError);
+   // response.status).catch(this.handleError);
+
+
+  }
+
+  novoProduto(): void{
+    this.isAddProduto = false;
   }
 
   deleteProduto(produtoId: string): Observable<Produto>{
