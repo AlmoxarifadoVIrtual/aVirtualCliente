@@ -19,6 +19,7 @@ import {SearchCustomersComponent} from './search-customers/search-customers.comp
 import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 import {LogginService} from "./services/loggin.service";
 import {ProdutoService} from "./services/produto.service";
+import {ListarProdutoComponent} from "./listar-produto/listar-produto.component";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {ProdutoService} from "./services/produto.service";
     SearchCustomersComponent,
     LoginComponent,
     HomeComponent,
-    CadastrarProdutoComponent
+    CadastrarProdutoComponent,
+    ListarProdutoComponent
 
   ],
   bootstrap: [AppComponent]

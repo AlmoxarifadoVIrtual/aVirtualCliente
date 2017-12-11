@@ -6,6 +6,7 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions} from "@angula
 import {Observable} from "rxjs/Observable";
 import {errorHandler} from "@angular/platform-browser/src/browser";
 import { catchError, map, tap } from 'rxjs/operators';
+import {normalizeMethodName} from "@angular/http/src/http_utils";
 
 
 @Injectable()
@@ -14,6 +15,16 @@ export class ProdutoService {
   constructor(private router: Router , private http : Http) {
 
   }
+
+  produto1 = {nome: 'coputador' , marca: 'dell', cor: 'preto',
+    referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'};
+
+  produto2 = {nome: 'mesaDektop', marca: 'A melhor', cor: 'amarela',
+    referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
+
+  minhaListaProduto = [this.produto1, this.produto2];
+
+
   produto: Produto;
   options = new Headers( {'Content-type': 'aplication/json'});
 

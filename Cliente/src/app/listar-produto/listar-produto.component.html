@@ -1,44 +1,31 @@
+<h1>Produtos em estoque </h1>
+
 <table class="table table-striped">
   <tr>
-    <th>
-      ID
-    </th>
-    <th>
-      Nombre
-    </th>
-    <th>
-      Descripcion
-    </th>
-    <th>
-      Unidades
-    </th>
-    <th>
-      Precio
-    </th>
-    <th>Operaciones</th>
+    <th>ID</th>
+    <th>Nome do produto</th>
+    <th>marca</th>
+    <th>Quantidade</th>
+    <th>Descrição</th>
+    <th>Cor</th>
+    <th>Referência</th>
   </tr>
-  <tr *ngFor="let item of productos; let i = index">
-    <td>
-      {{i}} - {{item.id}}
-    </td>
-    <td>
-      {{item.nombre}}
-    </td>
-    <td>
-      {{item.descripcion}}
-    </td>
-    <td>
-      {{item.unidades}}
-    </td>
-    <td>
-      {{item.precio}} €
-    </td>
-    <td>
-      <button class="btn btn-primary" (click)="modificarProducto(item)"><i class="glyphicon glyphicon-pencil"></i></button>
-      <button class="btn btn-primary" (click)="removeProducto(item)"><i class="glyphicon glyphicon-remove-sign"></i></button>
-    </td>
+<tbody>
+  <tr *ngFor="let produto of minhaListaProduto">
+    <td>{{produto.id}}</td>
+    <td>{{produto.nome}}</td>
+    <td>{{produto.marca}}</td>
+    <td>{{produto.quantidade}}</td>
+    <td>{{produto.descricao}}</td>
+    <td>{{produto.cor}}</td>
+    <td>{{produto.referencia}}</td>
   </tr>
+</tbody>
+
+
+
 </table>
+<!--
 
 <mat-nav-list>
   <mat-list-item *ngFor="let link of links">
@@ -57,3 +44,6 @@
     <p matLine class="demo-2"> {{message.content}} </p>
   </mat-list-item>
 </mat-list>
+
+
+-->

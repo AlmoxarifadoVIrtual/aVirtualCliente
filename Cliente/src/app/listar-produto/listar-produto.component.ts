@@ -17,6 +17,14 @@ export class ListarProdutoComponent implements OnInit {
 
     constructor(private produtoService: ProdutoService, private router: Router) { }
 
+  produto1 = {nome: 'coputador' , marca: 'dell', cor: 'preto',
+    referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'};
+
+  produto2 = {nome: 'mesaDektop', marca: 'A melhor', cor: 'amarela',
+    referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
+
+  minhaListaProduto = [this.produto1, this.produto2];
+
 
 
   ngOnInit() {
