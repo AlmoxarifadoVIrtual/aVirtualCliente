@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produto} from "../interfaces/produto";
 import {ProdutoService} from "../services/produto.service";
 import {Router} from "@angular/router";
+import {LogginService} from "../services/loggin.service";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class CadastrarProdutoComponent implements OnInit {
 
-  constructor(private router: Router, private produtoService: ProdutoService){
+  constructor(private router: Router, private produtoService: ProdutoService, loginSS: LogginService){
 
   }
 

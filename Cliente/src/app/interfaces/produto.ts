@@ -1,11 +1,11 @@
 export class Produto {
-  id: any;
+  id: string;
   nomeProduto: string;
   marcaProduto: string;
   corProduto: string;
   referenciaProduto: string;
   descricaoProduto: string;
-  quantProduto: any;
-  listaProduto: Array<Produto>[];
+  quantProduto: number;
+  //listaProduto: Array<Produto>[];
 
 }

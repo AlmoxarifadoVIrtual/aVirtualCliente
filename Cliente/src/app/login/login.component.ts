@@ -18,7 +18,23 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
   error = '';
+  token = '';
 
+  onSubmitLogin() {
+    console.log(this.model.loginCred + this.model.senha);
+    this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
+      console.log(result);
+      let v = result.valueOf();
+      console.log(v);
+      if ( this.logginS.loggedIn === true ){
+        this.router.navigate(['home']);
+      }else{
+        this.error = 'Username or password is incorrect';
+
+      }
+    });
+  }
+  /*
   onSubmitLogin() {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
@@ -31,6 +47,9 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+
+   */
 
 
   ngOnInit() {

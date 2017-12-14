@@ -4,9 +4,6 @@ import {Produto} from "../interfaces/produto";
 
 import { Http, Response, Headers, URLSearchParams, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {errorHandler} from "@angular/platform-browser/src/browser";
-import { catchError, map, tap } from 'rxjs/operators';
-import {normalizeMethodName} from "@angular/http/src/http_utils";
 
 
 @Injectable()
@@ -22,10 +19,9 @@ export class ProdutoService {
   produto2 = {nome: 'mesaDektop', marca: 'A melhor', cor: 'amarela',
     referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
 
-  minhaListaProduto = [this.produto1, this.produto2];
+  produtoLista = [this.produto1,this.produto2];
+  produtosArrr = Array<Produto>();
 
-
-  produto: Produto;
   options = new Headers( {'Content-type': 'aplication/json'});
 
   isAddProduto: boolean = false;
@@ -39,8 +35,13 @@ export class ProdutoService {
   }
 
   addProduto(nomeProduto,marcaProduto,corProduto,referenciaProduto,quantProduto,descricaoProduto): Observable<Produto>{
-   let  body = {nome: nomeProduto, marca: marcaProduto, cor: corProduto,
-   referencia: referenciaProduto, quantidade: quantProduto, descricao: descricaoProduto};
+   let  body = {nomeProduto: nomeProduto, marcaProduto: marcaProduto, corProduto: corProduto,
+   referenciaProduto: referenciaProduto, quantProduto: quantProduto, descricaoProduto: descricaoProduto};
+
+   console.log(nomeProduto)
+
+   this.produtoLista.push({nome:nomeProduto , marca: 'dell', cor: 'preto',
+     referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'});
 
     return this.http.post('api/usuarios', JSON.stringify(body), {headers: this.options}).map( response => {
       let status = response.status.valueOf();
