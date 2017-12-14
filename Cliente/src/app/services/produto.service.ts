@@ -40,8 +40,8 @@ export class ProdutoService {
 
    console.log(nomeProduto)
 
-   this.produtoLista.push({nome:nomeProduto , marca: 'dell', cor: 'preto',
-     referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'});
+   this.produtoLista.push({nome:nomeProduto , marca: marcaProduto, cor: corProduto,
+     referencia: referenciaProduto, quantidade: quantProduto, descricao: descricaoProduto});
 
     return this.http.post('api/usuarios', JSON.stringify(body), {headers: this.options}).map( response => {
       let status = response.status.valueOf();
