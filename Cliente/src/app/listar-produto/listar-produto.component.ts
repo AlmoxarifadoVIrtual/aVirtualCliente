@@ -24,8 +24,8 @@ export class ListarProdutoComponent implements OnInit {
     referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
 
   //minhaListaProduto = [this.produto1, this.produto2];
-  minhaListaProduto = this.produtoService.produtoLista;
- // minhaListaProduto = this.produtoService.produtosArrr;
+  //minhaListaProduto = this.produtoService.produtoLista;
+  minhaListaProduto = this.produtoService.getAllProdutos();
 
 
 

@@ -20,6 +20,9 @@ import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto
 import {LogginService} from "./services/loggin.service";
 import {ProdutoService} from "./services/produto.service";
 import {ListarProdutoComponent} from "./listar-produto/listar-produto.component";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,9 +30,10 @@ import {ListarProdutoComponent} from "./listar-produto/listar-produto.component"
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [DataService, LogginService, AuthenticationService, ProdutoService],
+  providers: [DataService, LogginService, AuthenticationService, ProdutoService,HttpClient],
   declarations: [
     AppComponent,
     CustomerDetailsComponent,
