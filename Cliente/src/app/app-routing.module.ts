@@ -8,6 +8,7 @@ import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {CadastrarProdutoComponent} from "./cadastrar-produto/cadastrar-produto.component";
 import {ListarProdutoComponent} from "./listar-produto/listar-produto.component";
+import {BacklogComponent} from "./backlog/backlog.component";
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'cadastrarP', component: CadastrarProdutoComponent},
 
   {path: 'findbylastname', component: SearchCustomersComponent},
+  {path: 'SistemaAtividade', component: BacklogComponent},
   {path: 'listarProduto', component: ListarProdutoComponent}
 ];
 

@@ -24,8 +24,28 @@ export class ListarProdutoComponent implements OnInit {
     referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
 
   //minhaListaProduto = [this.produto1, this.produto2];
-  //minhaListaProduto = this.produtoService.produtoLista;
-  minhaListaProduto = this.produtoService.getAllProdutos();
+  minhaListaProduto = this.produtoService.produtoLista;
+  //minhaListaProduto = this.produtoService.getAllProdutos();
+
+
+  deletarItem(nome){
+
+    for ( var i =0; i < this.minhaListaProduto.length; i++ ){
+
+      if( this.minhaListaProduto[i]["nome"] === nome ){
+        this.minhaListaProduto.splice(i,1);
+      }
+
+    }
+
+    this.minhaListaProduto.pop();
+
+  }
+
+  deletePPP(produto: Produto): void {
+    //this.produto = this.produto.filter(h => h !== produto);
+    //this.heroService.deleteHero(hero).subscribe();
+  }
 
 
 

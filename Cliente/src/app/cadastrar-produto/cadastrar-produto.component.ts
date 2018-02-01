@@ -18,7 +18,9 @@ export class CadastrarProdutoComponent implements OnInit {
   }
 
   model: any = {};
-  error = '';
+  error = ''
+
+  subimisaoProduto = false;
 
   cadastrarProduto(){
 
@@ -28,10 +30,13 @@ export class CadastrarProdutoComponent implements OnInit {
     this.produtoService.addProduto(this.model.nomeProduto, this.model.marcaProduto, this.model.corProduto,
       this.model.referenciaProduto, this.model.quantProduto, this.model.descricaoProduto);
 
+   // this.subimisaoProduto = true;
+
   }
 
   newProduto(){
-    this.produtoService.novoProduto();
+    this.subimisaoProduto = false;
+    //this.produtoService.novoProduto();
     this.router.navigate(['cadastrarP']);
   }
 

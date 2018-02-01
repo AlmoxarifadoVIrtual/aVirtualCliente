@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   error = '';
   token = '';
 
+  logado = false;
+
   onSubmitLogin() {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
       let v = result.valueOf();
       console.log(v);
       if ( this.logginS.loggedIn === true ){
+        this.logado = true;
         this.router.navigate(['home']);
       }else{
         this.error = 'Username or password is incorrect';
@@ -53,9 +56,12 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    this.logado = false;
     this.logginS.loggOut();
     }
 
+    logout(){
 
+    }
 
 }

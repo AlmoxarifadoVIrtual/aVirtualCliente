@@ -50,6 +50,8 @@ export class ProdutoService {
    this.produtoLista.push({nome:nomeProduto , marca: marcaProduto, cor: corProduto,
      referencia: referenciaProduto, quantidade: quantProduto, descricao: descricaoProduto});
 
+   this.isAddProduto = true;
+
     return this.http.post('/produtos', body).subscribe( data => console.log(data));
 
 

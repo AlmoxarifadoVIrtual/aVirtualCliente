@@ -9,6 +9,7 @@
     <th>Descrição</th>
     <th>Cor</th>
     <th>Referência</th>
+    <th> Ação </th>
   </tr>
 <tbody>
   <tr *ngFor="let produto of minhaListaProduto">
@@ -19,6 +20,13 @@
     <td>{{produto.descricao}}</td>
     <td>{{produto.cor}}</td>
     <td>{{produto.referencia}}</td>
+    <td>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button type="button" class="btn btn-primary"  (click)="deletarItem(nome)">Remover</button>
+        </div>
+      </div>
+    </td>
   </tr>
 </tbody>
 

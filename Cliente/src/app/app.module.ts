@@ -23,6 +23,7 @@ import {ListarProdutoComponent} from "./listar-produto/listar-produto.component"
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 import { HttpClientModule } from '@angular/common/http';
+import { BacklogComponent } from './backlog/backlog.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     CadastrarProdutoComponent,
-    ListarProdutoComponent
+    ListarProdutoComponent,
+    BacklogComponent
 
   ],
   bootstrap: [AppComponent]
