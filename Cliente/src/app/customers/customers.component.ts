@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../customer';
-import { DataService } from '../data.service';
+import { Customer } from '../interfaces/customer';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'customers-list',
@@ -13,8 +13,9 @@ export class CustomersComponent implements OnInit {
   selectedCustomer: Customer;
 
   constructor(private dataService: DataService) {}
+/*
 
-  getCustomers() {
+getCustomers() {
      this.dataService.getCustomers().then(customers => this.customers = customers);
   }
 
@@ -24,5 +25,8 @@ export class CustomersComponent implements OnInit {
 
   onSelect(cust: Customer): void {
     this.selectedCustomer = cust;
+  }
+ */
+  ngOnInit() {
   }
 }

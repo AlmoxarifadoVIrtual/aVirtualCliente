@@ -1,46 +1,24 @@
 
-<!--
-<form onsubmit="loginUser($event)">
-  <div class="form-group">
-    <label for="username">Email address</label>
-    <input type="name" class="form-control" id="username" aria-describedby="emailHelp" placeholder="name" required >
-
-  </div>
-  <div class="form-group">
-    <label for="userPassword">Password</label>
-    <input type="password" class="form-control" id="euserPassword" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input">
-      Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
--->
-
-
 <div class="col-md-6 col-md-offset-3">
 
   <h2>Login</h2>
-  <form name="form" (ngSubmit)="login()" #f="ngForm" >
+  <form name="form" (ngSubmit)="onSubmitLogin()" #f="ngForm" >
 
     <div class="form-group" >
       <label for="logincred">Username</label>
-      <input type="text" class="form-control" name="logincred" [(ngModel)]="model.loginCred"  required />
-      <div *ngIf="f.submitted && !logincred.valid" class="help-block">Username is required</div>
+      <input type="text" class="form-control" id="logincred" name="logincred" [(ngModel)]="model.loginCred"   #logincred="ngModel" required />
+      <div [hidden]  *ngIf="logincred.invalid " class="alert alert-danger"> login is required
+      </div>
     </div>
 
     <div class="form-group" >
-      <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" [(ngModel)]="model.senha" required  />
+      <label for="senha">Password</label>
+      <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="model.senha"  #senha="ngModel"required  />
       <div *ngIf="f.submitted && !senha.valid" class="help-block">Password is required</div>
     </div>
 
     <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Login</button>
+      <button class="btn btn-primary">Login</button>
     </div>
 
     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
@@ -48,4 +26,4 @@
 
 </div>
 
--->
+

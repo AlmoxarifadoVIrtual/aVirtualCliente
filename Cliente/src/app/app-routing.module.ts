@@ -4,18 +4,25 @@ import {SearchCustomersComponent} from './search-customers/search-customers.comp
 
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent } from "./login/login.component";
+import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
-import {TokenComponent } from "./token/token.component";
+import {CadastrarProdutoComponent} from "./cadastrar-produto/cadastrar-produto.component";
+import {ListarProdutoComponent} from "./listar-produto/listar-produto.component";
+import {BacklogComponent} from "./backlog/backlog.component";
+
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'customer', component: CustomersComponent},
   {path: 'add', component: CreateCustomerComponent},
-  {path: 'login', component: TokenComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'cadastrarP', component: CadastrarProdutoComponent},
+
   {path: 'findbylastname', component: SearchCustomersComponent},
+  {path: 'SistemaAtividade', component: BacklogComponent},
+  {path: 'listarProduto', component: ListarProdutoComponent}
 ];
 
 @NgModule({
