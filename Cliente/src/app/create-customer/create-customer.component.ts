@@ -24,7 +24,7 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   private save(): void {
-    this.dataService.create(this.customer);
+    //this.dataService.create(this.customer);
   }
 
   onSubmit() {

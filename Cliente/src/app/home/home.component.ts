@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Credencial} from "../interfaces/credencial";
 import {DataService} from "../services/data.service";
 
 @Component({

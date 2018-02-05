@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
 import { LogginService} from "../services/loggin.service";
 import { Router } from "@angular/router";
-import {Credencial} from "../interfaces/credencial";
+import { LoginCC} from "../interfaces/credencial";
 
 
 @Component({
@@ -14,15 +13,54 @@ import {Credencial} from "../interfaces/credencial";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private logginS: LogginService ,private router: Router ) { }
+  constructor(private logginS: LogginService , private router: Router ) { }
 
   model: any = {};
-  error = '';
+  error: string;
   token = '';
-
   logado = false;
+/*
+  onSubmitLogi() {
 
-  onSubmitLogin() {
+    console.log(this.model.loginCred + this.model.senha);
+    this.logginS.login( this.model.loginCred , this.model.senha )
+      .subscribe(
+        login => this.processarLogin(login),
+        error => this.error = error);
+
+  }
+
+  processarLogin(login: LoginCC){
+    localStorage['token'] = login.id;
+    this.router.navigate(['home']);
+
+  }
+
+  ngOnInit() {
+    this.logado = false;
+    this.logginS.loggOut();
+    }
+*/
+  onSubmitLogin(loginUsuario, senhaUsuario) {
+    console.log(this.model.loginCred + this.model.senha);
+    this.logginS.login(this.model.loginCred, this.model.senha).subscribe((result) => {
+      console.log(result);
+      let v = result.valueOf();
+      console.log(v);
+      if (result.length > 0) {
+        this.logado = true;
+        this.router.navigate(['home']);
+      } else {
+        this.error = 'Username or password is incorrect';
+
+      }
+    });
+  }
+
+
+
+/*
+onSubmitLogin() {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
       console.log(result);
@@ -37,31 +75,8 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  /*
-  onSubmitLogin() {
-    console.log(this.model.loginCred + this.model.senha);
-    this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
-      console.log(result);
-      if ( result === true ){
-        this.router.navigate(['home']);
-      }else{
-        this.error = 'Username or password is incorrect';
-
-      }
-    });
-  }
-
-
-   */
-
+ */
 
   ngOnInit() {
-    this.logado = false;
-    this.logginS.loggOut();
-    }
-
-    logout(){
-
-    }
-
+  }
 }

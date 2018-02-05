@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
 import { Customer } from '../interfaces/customer';
 import {AuthenticationService} from "./authentication.service";
-import {Credencial} from "../interfaces/credencial";
 
 
 
@@ -17,6 +16,7 @@ export class DataService {
 
   constructor(private http: Http, private authenticationService: AuthenticationService) {}
 
+  /*
   // Get all customers
   getCustomers(): Promise<Customer[]> {
     return this.http.get(this.customersUrl)
@@ -40,12 +40,13 @@ export class DataService {
       .then(() => null)
       .catch(this.handleError);
   }
-/*
+
   private handleError(error: any): Promise<any> {
     console.error('Error', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
-*/
+
+   */
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');

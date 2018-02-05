@@ -15,7 +15,7 @@ export class CustomersComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   getCustomers() {
-     this.dataService.getCustomers().then(customers => this.customers = customers);
+     //this.dataService.getCustomers().then(customers => this.customers = customers);
   }
 
   ngOnInit(): void {
