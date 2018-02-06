@@ -10,8 +10,16 @@ import{LogginService} from "./services/loggin.service";
 
 export class AppComponent {
 
+
   constructor(private LogginSS: LogginService){
 
   }
+
+  estouLogado = this.LogginSS.getLogado();
+
+  ngOnInit() {
+   console.log("estou logado", this.estouLogado);
+  }
+
 
 }

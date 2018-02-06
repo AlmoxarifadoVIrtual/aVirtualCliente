@@ -18,29 +18,14 @@ export class LoginComponent implements OnInit {
   model: any = {};
   error: string;
   token = '';
-  logado = false;
-/*
-  onSubmitLogi() {
-
-    console.log(this.model.loginCred + this.model.senha);
-    this.logginS.login( this.model.loginCred , this.model.senha )
-      .subscribe(
-        login => this.processarLogin(login),
-        error => this.error = error);
-
-  }
-
-  processarLogin(login: LoginCC){
-    localStorage['token'] = login.id;
-    this.router.navigate(['home']);
-
-  }
+  logado: boolean;
 
   ngOnInit() {
     this.logado = false;
-    this.logginS.loggOut();
+    //this.logginS.loggOut();
+    console.log(this.logado);
     }
-*/
+
   onSubmitLogin(loginUsuario, senhaUsuario) {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login(this.model.loginCred, this.model.senha).subscribe((result) => {
@@ -58,9 +43,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logoutUser(){
+  logoutUser() {
     this.logginS.loggOut();
-    if (localStorage.getItem('token')=== ''){
+    console.log(this.logginS.loggOut())
+    this.logado = false;
+    if (localStorage.getItem('token') === ''){
       this.router.navigate(['login']);
     }
     else{
@@ -69,11 +56,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-   userFunção(){
+   userFunção() {
     console.log(this.logginS.funcaoUser());
 
-
   }
+
 
 
 
@@ -95,6 +82,5 @@ onSubmitLogin() {
   }
  */
 
-  ngOnInit() {
-  }
+
 }

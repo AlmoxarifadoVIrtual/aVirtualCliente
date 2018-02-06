@@ -19,6 +19,7 @@ export class LogginService {
   chave: any;
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
+  loginStatus = false;
 
   login(login, senha) {
 
@@ -34,9 +35,11 @@ export class LogginService {
       if (status === 200) {
         this.chave = response.text();
         localStorage.setItem('token', this.chave );
-        console.log(" aqui é o local storage  "+localStorage.getItem('token'));
+        //console.log(" aqui é o local storage  "+localStorage.getItem('token'));
         this.headers.set('x-access-token',  this.chave );
-        console.log("aqui é o header " + this.headers.get('x-access-token'));
+        //console.log("aqui é o header " + this.headers.get('x-access-token'));
+        this.loginStatus = true;
+
         return this.chave;
         // return true to indicate successful login
 
@@ -55,11 +58,16 @@ export class LogginService {
 
   loggOut(){
     this.http.delete('acesso', this.headers.get('x-access-token'));
-    this.headers.set('x-access-token','' );
+    this.headers.set('x-access-token', '' );
+    this.loginStatus= false;
     localStorage.removeItem('token');
-    //console.log( "aqui é o header apagado " + this.headers.get('x-access-token'));
-    //console.log(" aqui é o local storage   apagado "+localStorage.getItem('token'));
+    console.log( "aqui é o header apagado " + this.headers.get('x-access-token'));
+    console.log(" aqui é o local storage   apagado "+localStorage.getItem('token'));
 
+  }
+
+  getLogado(){
+    return this.loginStatus;
   }
 
 /*
