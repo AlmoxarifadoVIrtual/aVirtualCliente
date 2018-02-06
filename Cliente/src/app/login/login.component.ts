@@ -49,12 +49,30 @@ export class LoginComponent implements OnInit {
       console.log(v);
       if (result.length > 0) {
         this.logado = true;
+        console.log(this.logado+ " este é this.logadooo");
         this.router.navigate(['home']);
       } else {
         this.error = 'Username or password is incorrect';
 
       }
     });
+  }
+
+  logoutUser(){
+    this.logginS.loggOut();
+    if (localStorage.getItem('token')=== ''){
+      this.router.navigate(['login']);
+    }
+    else{
+      console.log('nao removeu o storage' + localStorage.getItem('token'));
+    }
+
+  }
+
+   userFunção(){
+    console.log(this.logginS.funcaoUser());
+
+
   }
 
 

@@ -17,13 +17,14 @@ export class LogginService {
   }
 
   chave: any;
+  headers = new Headers({'Content-Type': 'application/json'});
+  options = new RequestOptions({headers: this.headers});
 
   login(login, senha) {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
+
     console.log(JSON.stringify({login: login, senha: senha}));
 
-    return this.http.post('acesso', JSON.stringify({login: login, senha: senha}), options
+    return this.http.post('acesso', JSON.stringify({login: login, senha: senha}), this.options
     ).map((response) => {
 
       let status = response.status.valueOf();
@@ -34,8 +35,8 @@ export class LogginService {
         this.chave = response.text();
         localStorage.setItem('token', this.chave );
         console.log(" aqui é o local storage  "+localStorage.getItem('token'));
-        headers.set('x-access-token',  this.chave );
-        console.log("aqui é o header " + headers.get('x-access-token'));
+        this.headers.set('x-access-token',  this.chave );
+        console.log("aqui é o header " + this.headers.get('x-access-token'));
         return this.chave;
         // return true to indicate successful login
 
@@ -48,7 +49,18 @@ export class LogginService {
     });
   }
 
-  loggOut(){ }
+  funcaoUser(){
+    return this.http.get('acesso', this.headers.get('x-access-token'));
+  }
+
+  loggOut(){
+    this.http.delete('acesso', this.headers.get('x-access-token'));
+    this.headers.set('x-access-token','' );
+    localStorage.removeItem('token');
+    //console.log( "aqui é o header apagado " + this.headers.get('x-access-token'));
+    //console.log(" aqui é o local storage   apagado "+localStorage.getItem('token'));
+
+  }
 
 /*
 

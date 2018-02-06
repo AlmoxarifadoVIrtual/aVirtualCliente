@@ -12,11 +12,11 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a routerLink="add"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li [hidden]="logado"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li [hidden]="!logado"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
     </ul>
   </div>
 </nav>
+<li [hidden]="logado" ><a  (click)="logoutUser()"><span class="glyphicon glyphicon-log-in"  style="color:color:blue;font-weight:bold" ></span> Logout</a></li>
 
 <div class="container" >
     <router-outlet></router-outlet>
