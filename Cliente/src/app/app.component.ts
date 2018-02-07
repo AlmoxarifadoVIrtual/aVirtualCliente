@@ -26,9 +26,8 @@ export class AppComponent {
   onSubmitLogin(loginUsuario, senhaUsuario) {
     console.log(this.model.loginCred + this.model.senha);
     this.logginS.login(this.model.loginCred, this.model.senha).subscribe((result) => {
-      console.log(result);
-      let v = result.valueOf();
-      console.log(v);
+      let eu = this.logginS.funcaoExercida();
+      console.log(eu + "  exercicio da pessoa ");
       if (this.logginS.getLogado()) {
         this.logado = true;
         console.log(this.logado+ " este é this.logadooo");

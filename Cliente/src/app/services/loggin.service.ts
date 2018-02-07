@@ -20,6 +20,7 @@ export class LogginService {
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
   loginStatus = false;
+  funcaoUser:any;
 
   login(login, senha) {
 
@@ -52,8 +53,13 @@ export class LogginService {
     });
   }
 
-  funcaoUser(){
-    return this.http.get('acesso', this.headers.get('x-access-token'));
+  funcaoExercida() {
+    return this.http.get('acesso', this.headers.get('x-access-token')).map(result =>{
+      this.funcaoUser = result.text();
+      console.log('o cara é ' + this.funcaoUser);
+      return this.funcaoUser;
+
+    });
   }
 
   loggOut(){
