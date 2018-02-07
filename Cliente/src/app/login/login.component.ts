@@ -13,74 +13,7 @@ import { LoginCC} from "../interfaces/credencial";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private logginS: LogginService , private router: Router ) { }
 
-  model: any = {};
-  error: string;
-  token = '';
-  logado: boolean;
-
-  ngOnInit() {
-    this.logado = false;
-    //this.logginS.loggOut();
-    console.log(this.logado);
-    }
-
-  onSubmitLogin(loginUsuario, senhaUsuario) {
-    console.log(this.model.loginCred + this.model.senha);
-    this.logginS.login(this.model.loginCred, this.model.senha).subscribe((result) => {
-      console.log(result);
-      let v = result.valueOf();
-      console.log(v);
-      if (result.length > 0) {
-        this.logado = true;
-        console.log(this.logado+ " este é this.logadooo");
-        this.router.navigate(['home']);
-      } else {
-        this.error = 'Username or password is incorrect';
-
-      }
-    });
-  }
-
-  logoutUser() {
-    this.logginS.loggOut();
-    console.log(this.logginS.loggOut())
-    this.logado = false;
-    if (localStorage.getItem('token') === ''){
-      this.router.navigate(['login']);
-    }
-    else{
-      console.log('nao removeu o storage' + localStorage.getItem('token'));
-    }
-
-  }
-
-   userFunção() {
-    console.log(this.logginS.funcaoUser());
-
-  }
-
-
-
-
-/*
-onSubmitLogin() {
-    console.log(this.model.loginCred + this.model.senha);
-    this.logginS.login( this.model.loginCred , this.model.senha ).subscribe((result) => {
-      console.log(result);
-      let v = result.valueOf();
-      console.log(v);
-      if ( this.logginS.loggedIn === true ){
-        this.logado = true;
-        this.router.navigate(['home']);
-      }else{
-        this.error = 'Username or password is incorrect';
-
-      }
-    });
-  }
- */
 
 
 }
