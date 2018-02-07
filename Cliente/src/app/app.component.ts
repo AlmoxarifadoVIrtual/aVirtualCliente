@@ -41,11 +41,13 @@ export class AppComponent {
   }
 
   logoutUser() {
+
     this.router.navigate(['home']);
+    this.logado = false;
     this.logginS.loggOut();
     console.log(this.logginS.loggOut())
-    this.logado = false;
-    if (localStorage.getItem('token') === ''){
+
+    if (localStorage.getItem('token') === null){
       this.router.navigate(['']);
     }
     else{

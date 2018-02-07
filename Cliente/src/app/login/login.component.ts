@@ -13,7 +13,7 @@ import { LoginCC} from "../interfaces/credencial";
 })
 export class LoginComponent implements OnInit {
 
-
+ngOnInit(){}
 
 
 }
