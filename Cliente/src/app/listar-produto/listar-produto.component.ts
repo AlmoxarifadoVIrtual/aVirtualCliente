@@ -3,6 +3,8 @@ import { Router} from "@angular/router";
 
 import {ProdutoService} from "../services/produto.service";
 import {Produto} from "../interfaces/produto";
+import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-listar-produto',
@@ -15,22 +17,24 @@ export class ListarProdutoComponent implements OnInit {
   @Output() borrado: EventEmitter<Produto> = new EventEmitter<Produto>();
   @Output() modificado: EventEmitter<Produto> = new EventEmitter<Produto>();
 
-    constructor(private produtoService: ProdutoService, private router: Router) { }
+    constructor(private produtoService: ProdutoService, private router: Router ) {
 
-  produto1 = {nome: 'coputador' , marca: 'dell', cor: 'preto',
-    referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'};
+    }
 
-  produto2 = {nome: 'mesaDektop', marca: 'A melhor', cor: 'amarela',
-    referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
+    pro = this.produtoService.planos;
 
-  //minhaListaProduto = [this.produto1, this.produto2];
-  minhaListaProduto = this.produtoService.produtoLista;
+    produtosLista: any
+    minhaListaProduto = this.produtoService.getAllProdutos().toArray;
   //minhaListaProduto = this.produtoService.getAllProdutos();
 
 
+  getProduto(){
+
+  }
+  /*
   deletarItem(nome){
 
-    for ( var i =0; i < this.minhaListaProduto.length; i++ ){
+    for ( var i =0; i < this.produtosLista; i++ ){
 
       if( this.minhaListaProduto[i]["nome"] === nome ){
         this.minhaListaProduto.splice(i,1);
@@ -47,11 +51,13 @@ export class ListarProdutoComponent implements OnInit {
     //this.heroService.deleteHero(hero).subscribe();
   }
 
-
-
-
+ */
 
   ngOnInit() {
+    this.produtosLista = this.produtoService.getAllProdutos();
+    console.log(" aqui é this.pro "+this.pro);
+    console.log(" aqui é produto lista"+ this.produtosLista);
+    console.log(" aqui é planos "+ this.produtosLista.planos);
   }
 
 }
