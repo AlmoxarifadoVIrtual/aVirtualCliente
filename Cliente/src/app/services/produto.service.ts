@@ -8,72 +8,110 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions} from "@angula
 import {Observable} from "rxjs/Observable";
 import {LogginService} from "./loggin.service";
 import {catchError} from "rxjs/operators";
+import 'rxjs/add/operator/map';
 
 
 @Injectable()
 export class ProdutoService {
 
-  //planos: Object[] = [];
-  planos : any;
 
-  ustomersObservable : Observable<Produto[]>;
+  planos : any;
+  isAddProduto: boolean = false;
+  headers = new Headers({'Content-Type': 'application/json','chave': localStorage.getItem('chave')});
+
+  options = new RequestOptions({headers: this.headers});
+  //eita = new Headers({'chave': localStorage.getItem('token')});
+
+  erro:any;
+
+
   constructor(private router: Router , private http: HttpClient, private loggin: LogginService, private ptth: Http) {
 
-    this.planos = this.http.get<Produto>('produtos/listar',this.options.headers.get('x-access-token')).map(res => Array);
   }
-
-
-/*
-  produto1 = {nome: 'coputador' , marca: 'dell', cor: 'preto',
-    referencia: '002', quantidade: '3', descricao: 'produto novo muito bom'};
-
-  produto2 = {nome: 'mesaDektop', marca: 'A melhor', cor: 'amarela',
-    referencia: 'b002', quantidade: 10, descricao: 'mesas de alta qualidade'};
-
-  produtoLista = [this.produto1,this.produto2];
- // produtosArrr = Array<Produto>();
-  dataList = [];
-
-*/
-
-  isAddProduto: boolean = false;
-  headers = new Headers({'Content-Type': 'application/json','Authorization': 'x-access-token'});
-  options = new RequestOptions({headers: this.headers});
-  erro:any;
 
   getIsAddProduto(){
     return this.isAddProduto;
   }
 
 
-  getAllProdutos(): Observable<Produto[]>{
-    this.headers.set('x-access-token', localStorage.getItem('token'));
-    return this.http.get<Produto[]>('produtos/listar',this.options.headers.get('x-access-token'));
+  // metodo pra retornar os produtos
+  getAllProdutos(): Observable<Array<Produto>>{
+    //let other = this.headers.append('chave',localStorage.getItem('token'));
+    //let chave = localStorage.getItem('token');
+
+    console.log("antes de entrar no htttp   este é o header"+ this.options.headers.get('chave'));
+
+    return this.ptth.get('produtos/listar', this.options)
+      .map(response => {
+        let result = response.status.valueOf();
+        console.log("depois do htttp");
+        console.log(result);
+        if( result === 200){
+          console.log(response.text());
+          return response.json();
+        }
+      });
+
   }
 
-  addProduto(nomeProduto,marcaProduto,corProduto,referenciaProduto,quantProduto,descricaoProduto): Observable<Produto>{
+  private extractObject(res: Response): Object {
+    const data: any = res.json();
+    return data || {};
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body;
+  }
+
+  private handleErrorObservable (error: Response | any) {
+    console.error(error.message || error);
+    return Observable.throw(error.message || error);
+
+  }
+
+  getDosProduto(): Observable<Produto[]>{
+    return this.http.get("produtos/listar", 'ca59004f-2c7c-4c08-a33c-0556e7d0831f')
+      .map(this.extractData);
+     // .catch(this.handleErrorObservable);
+  }
 
 
-   let  body = {nomeProduto: nomeProduto, marcaProduto: marcaProduto, corProduto: corProduto,
-   referenciaProduto: referenciaProduto, quantProduto: quantProduto, descricaoProduto: descricaoProduto};
+  addProduto(nomeProduto,marcaProduto,corProduto,referenciaProduto,quantProduto,descricaoProduto){
 
-   console.log(nomeProduto)
-
-   //this.produtoLista.push({nome:nomeProduto , marca: marcaProduto, cor: corProduto,
-   //  referencia: referenciaProduto, quantidade: quantProduto, descricao: descricaoProduto});
-
+    let  body = {nome: nomeProduto, marca: marcaProduto, referencia: referenciaProduto,cor: corProduto,
+                  descricao: descricaoProduto, quantidade: quantProduto};
+   console.log(body);
    this.isAddProduto = true;
-   //this.options.headers.get('x-access-token')
-    this.headers.set('x-access-token', localStorage.getItem('token'));
+   console.log("chave no addProduto  "+this.options.headers.get('chave'));
 
-    console.log("aqui é o header de x-access " +this.options.headers.get('x-access-token'))
-    return this.http.post('/produtos', body,this.options.headers.get('x-access-token'))
-      .pipe(catchError(error => this.erro = error));
-  }
+   this.ptth.post('/produtos', JSON.stringify(body),this.options.headers.get('chave')).map(res => res.valueOf()) }
 
   novoProduto(): void{
     this.isAddProduto = false;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   deleteProduto(produtoId: string, quantidade: number): Observable<Produto>{
 

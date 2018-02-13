@@ -13,18 +13,15 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ListarProdutoComponent implements OnInit {
 
-  @Input() produtos = Array<Produto>();
-  @Output() borrado: EventEmitter<Produto> = new EventEmitter<Produto>();
-  @Output() modificado: EventEmitter<Produto> = new EventEmitter<Produto>();
+  produtoL: Observable<Produto[]>;
+  produtoo: Produto[];
+  errorMessage: String;
 
-    constructor(private produtoService: ProdutoService, private router: Router ) {
+  constructor(private produtoService: ProdutoService ) {
 
     }
 
-    pro = this.produtoService.planos;
-
-    produtosLista: any
-    minhaListaProduto = this.produtoService.getAllProdutos().toArray;
+  //minhaListaProduto = this.produtoService.getAllProdutos();
   //minhaListaProduto = this.produtoService.getAllProdutos();
 
 
@@ -53,11 +50,12 @@ export class ListarProdutoComponent implements OnInit {
 
  */
 
-  ngOnInit() {
-    this.produtosLista = this.produtoService.getAllProdutos();
-    console.log(" aqui é this.pro "+this.pro);
-    console.log(" aqui é produto lista"+ this.produtosLista);
-    console.log(" aqui é planos "+ this.produtosLista.planos);
+  ngOnInit(): void {
+    this.produtoL = this.produtoService.getDosProduto();
+    this.produtoL.subscribe(
+      produto => this.produtoo = produto,
+      error =>  this.errorMessage = <any>error);
   }
+
 
 }

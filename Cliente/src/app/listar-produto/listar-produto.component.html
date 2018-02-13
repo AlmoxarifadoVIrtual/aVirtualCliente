@@ -1,5 +1,21 @@
 <h1>Produtos em estoque </h1>
 
+
+<ul>
+  <li *ngFor="let produto of produtoL | async" >
+    Id: {{produto.id}}, Name: {{produto.nome}}
+  </li>
+</ul>
+
+<h3>Book Details after "subscribe" to Observable </h3>
+<ul>
+  <li *ngFor="let produto of produtoo" >
+    Id: {{produto.id}}, Name: {{produto.nome}}
+  </li>
+</ul>
+
+<div *ngIf="errorMessage"> {{errorMessage}} </div>
+
 <table class="table table-striped">
   <tr>
     <th>ID</th>
@@ -12,7 +28,7 @@
     <th> Ação </th>
   </tr>
 <tbody>
-  <tr *ngFor="let produto of ">
+  <tr *ngFor="let produto of minhaListaProduto">
     <td>{{produto.id}}</td>
     <td>{{produto.nome}}</td>
     <td>{{produto.marca}}</td>

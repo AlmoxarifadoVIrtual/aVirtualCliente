@@ -6,6 +6,4 @@ export class Produto {
   referenciaProduto: string;
   descricaoProduto: string;
   quantProduto: number;
-  listaPP: string[];
-
-}
+  }
