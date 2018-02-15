@@ -71,7 +71,9 @@ export class ProdutoService {
   }
 
   getDosProduto(): Observable<Produto[]>{
-    return this.http.get("produtos/listar", 'ca59004f-2c7c-4c08-a33c-0556e7d0831f')
+    console.log("aqui é o headers  "+this.headers.get('chave'));
+    console.log("aqui é o header key"+ this.headers.keys().toString());
+    return this.http.get("produtos/listar", this.headers.get('chave').toString())
       .map(this.extractData);
      // .catch(this.handleErrorObservable);
   }
