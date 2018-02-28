@@ -1,6 +1,6 @@
 {
   "/": {
-    "target": "http://localhost:8080",
+    "target": "https://a-virtual-servidor.herokuapp.com/",
     "secure": false,
     "pathRewrite": {
       "^/": ""
