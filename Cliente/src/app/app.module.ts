@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BacklogComponent } from './backlog/backlog.component';
 import {ChaveTService} from "./services/chave-t.service";
 import {RotasGuard} from "./rotas.guard";
+import {ConfigService} from "./config-service";
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import {RotasGuard} from "./rotas.guard";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [DataService, LogginService, AuthenticationService, ProdutoService,HttpClient, ChaveTService, RotasGuard],
+  providers: [ConfigService, DataService, LogginService, AuthenticationService, ProdutoService,HttpClient, ChaveTService, RotasGuard],
   declarations: [
     AppComponent,
     CustomerDetailsComponent,

@@ -16,6 +16,7 @@ export class CadastrarProdutoComponent implements OnInit {
 
   model: any = {};
   error = ''
+  isAddProduto = true;
 
   subimisaoProduto = false;
 

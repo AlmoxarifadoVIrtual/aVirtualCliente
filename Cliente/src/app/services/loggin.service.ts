@@ -7,25 +7,27 @@ import {LoginCC} from "../interfaces/credencial";
 import {HttpClient} from "@angular/common/http";
 import {stringify} from "@angular/core/src/util";
 import {jsonpCallbackContext} from "@angular/common/http/src/module";
+import {ConfigService} from "../config-service";
 
 
 
 @Injectable()
 export class LogginService {
 
-  constructor(private http: Http, private chaveH: ChaveTService, private htt: HttpClient) {
+  constructor(private http: Http, private chaveH: ChaveTService, private htt: HttpClient, private urlConfig: ConfigService) {
   }
 
   chave: any;
   headers = new Headers({'Content-Type': 'application/json'});
   options = new RequestOptions({headers: this.headers});
   loginStatus = false;
+  url = this.urlConfig.getUrlService();
 
   login(login, senha) {
 
     console.log(JSON.stringify({login: login, senha: senha}));
 
-    return this.http.post('acesso', JSON.stringify({login: login, senha: senha}), this.options
+    return this.http.post(this.url+'/acesso', JSON.stringify({login: login, senha: senha}), this.options
     ).map((response) => {
 
       let status = response.status.valueOf();
