@@ -45,20 +45,12 @@ export class AppComponent {
     this.router.navigate(['home']);
     this.logado = false;
     this.logginS.loggOut();
-    console.log(this.logginS.loggOut())
-
-    if (localStorage.getItem('token') === null){
-      this.router.navigate(['']);
+    if (this.logado = false){
+      this.router.navigate(['home']);
     }
-    else{
-      console.log('nao removeu o storage' + localStorage.getItem('token'));
-    }
+    console.log(this.logginS.loggOut());
 
   }
 
-  userFunção() {
-    console.log(this.logginS.funcaoUser());
-
-  }
 
 }

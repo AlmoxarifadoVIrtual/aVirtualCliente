@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Observable";
 import {LogginService} from "./loggin.service";
 import {catchError} from "rxjs/operators";
 import 'rxjs/add/operator/map';
-
+import {ConfigService} from "../config-service";
 
 @Injectable()
 export class ProdutoService {
@@ -18,14 +18,12 @@ export class ProdutoService {
   planos : any;
   isAddProduto: boolean = false;
   headers = new Headers({'Content-Type': 'application/json','chave': localStorage.getItem('chave')});
-
   options = new RequestOptions({headers: this.headers});
-  //eita = new Headers({'chave': localStorage.getItem('token')});
-
+  url = this.urlConfig.getUrlService();
   erro:any;
 
-
-  constructor(private router: Router , private http: HttpClient, private loggin: LogginService, private ptth: Http) {
+  constructor(private router: Router , private http: HttpClient, private loggin: LogginService, private ptth: Http,
+              private urlConfig: ConfigService) {
 
   }
 
@@ -41,7 +39,7 @@ export class ProdutoService {
 
     console.log("antes de entrar no htttp   este é o header"+ this.options.headers.get('chave'));
 
-    return this.ptth.get('produtos/listar', this.options)
+    return this.ptth.get(this.url+'/produtos/listar', this.options)
       .map(response => {
         let result = response.status.valueOf();
         console.log("depois do htttp");
@@ -73,7 +71,7 @@ export class ProdutoService {
   getDosProduto(): Observable<Produto[]>{
     console.log("aqui é o headers  "+this.headers.get('chave'));
     console.log("aqui é o header key"+ this.headers.keys().toString());
-    return this.http.get("produtos/listar", this.headers.get('chave').toString())
+    return this.http.get(this.url+"/produtos/listar", this.headers.get('chave').toString())
       .map(this.extractData);
      // .catch(this.handleErrorObservable);
   }
@@ -87,7 +85,7 @@ export class ProdutoService {
    this.isAddProduto = true;
    console.log("chave no addProduto  "+this.options.headers.get('chave'));
 
-   this.ptth.post('/produtos', JSON.stringify(body),this.options.headers.get('chave')).map(res => res.valueOf()) }
+   this.ptth.post(this.url+'/produtos', JSON.stringify(body),this.options.headers.get('chave')).map(res => res.valueOf()) }
 
   novoProduto(): void{
     this.isAddProduto = false;

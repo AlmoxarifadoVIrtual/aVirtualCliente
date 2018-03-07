@@ -15,7 +15,7 @@ import {RotasGuard} from "./rotas.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: 'app', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent, canActivate: [RotasGuard]},
+  {path: 'home', component: HomeComponent },
   {path: 'customer', component: CustomersComponent, canActivate: [RotasGuard]},
   {path: 'add', component: CreateCustomerComponent, canActivate: [RotasGuard]},
   //{path: 'login', component: LoginComponent},

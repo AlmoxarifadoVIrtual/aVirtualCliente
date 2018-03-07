@@ -20,7 +20,7 @@ export class ListarProdutoComponent implements OnInit {
   constructor(private produtoService: ProdutoService ) {
 
     }
-  
+
 
   //minhaListaProduto = this.produtoService.getAllProdutos();
   //minhaListaProduto = this.produtoService.getAllProdutos();
@@ -53,10 +53,10 @@ export class ListarProdutoComponent implements OnInit {
  */
 
   ngOnInit(): void {
-   // this.produtoL = this.produtoService.getDosProduto();
-    //this.produtoL.subscribe(
-     // produto => this.produtoo = produto,
-      //error =>  this.errorMessage = <any>error);
+    this.produtoL = this.produtoService.getDosProduto();
+    this.produtoL.subscribe(
+      produto => this.produtoo = produto,
+      error =>  this.errorMessage = <any>error);
   }
 
 

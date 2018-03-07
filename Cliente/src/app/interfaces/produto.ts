@@ -6,4 +6,8 @@ export class Produto {
   referenciaProduto: string;
   descricaoProduto: string;
   quantProduto: number;
+  precoProduto: number;
+  observacaoProduto: string;
+  unidadeDeMedida: string;
+
   }

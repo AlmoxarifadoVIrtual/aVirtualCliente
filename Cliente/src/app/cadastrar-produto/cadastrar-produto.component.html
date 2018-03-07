@@ -19,6 +19,21 @@
     </div>
 
     <div class="form-group">
+      <label for="precoProduto">Preço</label>
+      <input type="text" id="precoProduto" class="form-control" required name="precoProduto" [(ngModel)]="model.precoProduto"  />
+    </div>
+
+    <div>
+      <label>Unidade de medida</label>
+      <select name="unidadeDeMedida" >
+        <option value="UNIDADE" >Unidade </option>
+        <option value="KILOGRAMA" >Kilograma</option>
+        <option value="METRO" >Metro</option>
+        <option value="LITRO" >Litro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
         <label for="quantProduto">Quantidade</label>
         <input type="number" id="quantProduto" class="form-control" required name="quantProduto" [(ngModel)]="model.quantProduto" />
 
@@ -37,6 +52,12 @@
     <div class="form-group">
         <label for="referenciaProduto">Referência</label>
         <input type="text" id="referenciaProduto"  class="form-control" required name="referenciaProduto" [(ngModel)]="model.referenciaProduto" />
+    </div>
+
+
+    <div class="form-group">
+      <label for="observacaoProduto">Observação</label>
+      <textarea id="observacaoProduto" class="form-control" name="observacaoProduto" rows="5" cols="50" [(ngModel)]="model.observacaoProduto"></textarea>
     </div>
 
     <div >

@@ -55,11 +55,11 @@ export class LogginService {
   }
 
   funcaoUser(){
-    return this.http.get('acesso', this.headers.get('chave'));
+    return this.http.get('/acesso', this.headers.get('chave'));
   }
 
   loggOut(){
-    this.http.delete('acesso', this.headers.get('chave'));
+    this.http.delete(this.url+'/acesso', this.headers.get('chave'));
     this.headers.set('chave', '' );
     this.loginStatus= false;
     localStorage.removeItem('chave');
