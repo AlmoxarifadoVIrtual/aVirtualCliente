@@ -34,8 +34,6 @@ export class ProdutoService {
 
   // metodo pra retornar os produtos
   getAllProdutos(): Observable<Array<Produto>>{
-    //let other = this.headers.append('chave',localStorage.getItem('token'));
-    //let chave = localStorage.getItem('token');
 
     console.log("antes de entrar no htttp   este é o header"+ this.options.headers.get('chave'));
 
@@ -77,42 +75,22 @@ export class ProdutoService {
   }
 
 
-  addProduto(nomeProduto,marcaProduto,corProduto,referenciaProduto,quantProduto,descricaoProduto){
+  addProduto(nomeProduto,marcaProduto,precoProduto,unidadeDeMedida,corProduto,referenciaProduto,quantProduto,descricaoProduto, observacaoProduto){
 
     let  body = {nome: nomeProduto, marca: marcaProduto, referencia: referenciaProduto,cor: corProduto,
-                  descricao: descricaoProduto, quantidade: quantProduto};
+                  descricao: descricaoProduto, quantidade: quantProduto, preco: precoProduto, unidadeMedida: unidadeDeMedida,
+                  observacaoProduto: observacaoProduto};
    console.log(body);
    this.isAddProduto = true;
    console.log("chave no addProduto  "+this.options.headers.get('chave'));
 
-   this.ptth.post(this.url+'/produtos', JSON.stringify(body),this.options.headers.get('chave')).map(res => res.valueOf()) }
+   this.ptth.post(this.url+'/produtos', JSON.stringify(body),this.headers.get('chave').toString()).map(res => res.json());
+
+  }
 
   novoProduto(): void{
     this.isAddProduto = false;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   deleteProduto(produtoId: string, quantidade: number): Observable<Produto>{
 
     return this.http.delete('/produtos' +'/' + produtoId+ '/' + quantidade).map( response => console.log(response))

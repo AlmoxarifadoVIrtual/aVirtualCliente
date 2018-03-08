@@ -22,8 +22,8 @@ export class CadastrarProdutoComponent implements OnInit {
 
   cadastrarProduto(){
 
-    this.produtoService.addProduto(this.model.nomeProduto, this.model.marcaProduto, this.model.corProduto,
-      this.model.referenciaProduto, this.model.quantProduto, this.model.descricaoProduto);
+    this.produtoService.addProduto(this.model.nomeProduto, this.model.marcaProduto,this.model.precoProduto, this.model.unidadeDeMedida,
+      this.model.corProduto,this.model.referenciaProduto, this.model.quantProduto, this.model.descricaoProduto, this.model.observacaoProduto);
 
   }
 
