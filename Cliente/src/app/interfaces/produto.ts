@@ -1,13 +1,13 @@
 export class Produto {
-  id: string;
-  nomeProduto: string;
-  marcaProduto: string;
-  corProduto: string;
-  referenciaProduto: string;
-  descricaoProduto: string;
-  quantProduto: number;
-  precoProduto: number;
-  observacaoProduto: string;
+  id: number;
+  nome: string;
+  marca: string;
+  cor: string;
+  referencia: string;
+  descricao: string;
+  quantidade: number;
+  preco: number;
+  observacao: string;
   unidadeDeMedida: string;
 
   }

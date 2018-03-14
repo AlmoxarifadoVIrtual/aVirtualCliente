@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from "../services/produto.service";
-
-
+import {Produto} from "../interfaces/produto";
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -13,22 +12,35 @@ export class CadastrarProdutoComponent implements OnInit {
   constructor( private produtoService: ProdutoService){
 
   }
-
-  model: any = {};
   error = ''
   isAddProduto = true;
+  produto = new Produto();
+
 
   subimisaoProduto = false;
 
   cadastrarProduto(){
 
-    this.produtoService.addProduto(this.model.nomeProduto, this.model.marcaProduto,this.model.precoProduto, this.model.unidadeDeMedida,
-      this.model.corProduto,this.model.referenciaProduto, this.model.quantProduto, this.model.descricaoProduto, this.model.observacaoProduto);
+    this.produtoService.addProduto(this.produto);
 
   }
 
   newProduto(){
     this.subimisaoProduto = false;
+  }
+
+  resetar (){
+    this.produto.nome = null;
+    this.produto.cor = null;
+    this.produto.descricao = null;
+    this.produto.observacao = null;
+    this.produto.marca = null;
+    this.produto.preco = null;
+    this.produto.referencia = null;
+    this.produto.unidadeDeMedida = null;
+    this.produto.quantidade = null;
+
+
   }
 
 

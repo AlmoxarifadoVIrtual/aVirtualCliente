@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {Produto} from "../interfaces/produto";
 import {HttpClient} from '@angular/common/http';
-import{ Subscription} from "rxjs/Subscription";
-
-import { Http, Response, Headers, URLSearchParams, RequestOptions} from "@angular/http";
+import { Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {LogginService} from "./loggin.service";
-import {catchError} from "rxjs/operators";
 import 'rxjs/add/operator/map';
 import {ConfigService} from "../config-service";
+import { Produto} from "../interfaces/produto";
 
 @Injectable()
 export class ProdutoService {
+
 
 
   planos : any;
@@ -50,22 +49,6 @@ export class ProdutoService {
 
   }
 
-  private extractObject(res: Response): Object {
-    const data: any = res.json();
-    return data || {};
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body;
-  }
-
-  private handleErrorObservable (error: Response | any) {
-    console.error(error.message || error);
-    return Observable.throw(error.message || error);
-
-  }
-
   getDosProduto(): Observable<Produto[]>{
     console.log("aqui é o headers  "+this.headers.get('chave'));
     console.log("aqui é o header key"+ this.headers.keys().toString());
@@ -74,18 +57,12 @@ export class ProdutoService {
      // .catch(this.handleErrorObservable);
   }
 
-
-  addProduto(nomeProduto,marcaProduto,precoProduto,unidadeDeMedida,corProduto,referenciaProduto,quantProduto,descricaoProduto, observacaoProduto){
-
-    let  body = {nome: nomeProduto, marca: marcaProduto, referencia: referenciaProduto,cor: corProduto,
-                  descricao: descricaoProduto, quantidade: quantProduto, preco: precoProduto, unidadeMedida: unidadeDeMedida,
-                  observacaoProduto: observacaoProduto};
-   console.log(body);
+  addProduto(produto: Produto): Promise<Produto>{
+    
    this.isAddProduto = true;
-   console.log("chave no addProduto  "+this.options.headers.get('chave'));
-
-   this.ptth.post(this.url+'/produtos', JSON.stringify(body),this.headers.get('chave').toString()).map(res => res.json());
-
+    return this.http.post(this.url+'/produtos', (produto), options).toPromise()
+      .then(this.extractData)
+      .catch(this.handleErrorPromise);
   }
 
   novoProduto(): void{
@@ -115,6 +92,27 @@ export class ProdutoService {
   private handleError (error: Response | any) {
     console.log(error.message);
     return Observable.throw(error.status);
+  }
+
+  private extractObject(res: Response): Object {
+    const data: any = res.json();
+    return data || {};
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body;
+  }
+
+  private handleErrorObservable (error: Response | any) {
+    console.error(error.message || error);
+    return Observable.throw(error.message || error);
+
+  }
+
+  private handleErrorPromise (error: Response | any) {
+    console.error(error.message || error);
+    return Promise.reject(error.message || error);
   }
 
   ngOnInit() {
