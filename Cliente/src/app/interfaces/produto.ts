@@ -10,4 +10,7 @@ export class Produto {
   observacao: string;
   unidadeDeMedida: string;
 
+  constructor() {
+  }
+
   }

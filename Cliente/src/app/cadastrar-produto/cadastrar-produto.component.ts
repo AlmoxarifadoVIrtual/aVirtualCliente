@@ -15,13 +15,17 @@ export class CadastrarProdutoComponent implements OnInit {
   error = ''
   isAddProduto = true;
   produto = new Produto();
-
-
   subimisaoProduto = false;
+  idProduto: number;
 
   cadastrarProduto(){
-
-    this.produtoService.addProduto(this.produto);
+this.idProduto =+1;
+this.produto.id = this.idProduto;
+    console.log(this.produto);
+    this.produtoService.addProduto(this.produto).subscribe( produto => {
+        this.resetar();
+      },
+      error => this.error = <any>error);;
 
   }
 

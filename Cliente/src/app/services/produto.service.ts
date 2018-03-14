@@ -7,7 +7,6 @@ import {Observable} from "rxjs/Observable";
 import {LogginService} from "./loggin.service";
 import 'rxjs/add/operator/map';
 import {ConfigService} from "../config-service";
-import { Produto} from "../interfaces/produto";
 
 @Injectable()
 export class ProdutoService {
@@ -21,7 +20,7 @@ export class ProdutoService {
   url = this.urlConfig.getUrlService();
   erro:any;
 
-  constructor(private router: Router , private http: HttpClient, private loggin: LogginService, private ptth: Http,
+  constructor(private router: Router , private httpCliente: HttpClient, private loggin: LogginService, private http: Http,
               private urlConfig: ConfigService) {
 
   }
@@ -36,7 +35,7 @@ export class ProdutoService {
 
     console.log("antes de entrar no htttp   este é o header"+ this.options.headers.get('chave'));
 
-    return this.ptth.get(this.url+'/produtos/listar', this.options)
+    return this.http.get(this.url+'/produtos/listar', this.options)
       .map(response => {
         let result = response.status.valueOf();
         console.log("depois do htttp");
@@ -57,12 +56,12 @@ export class ProdutoService {
      // .catch(this.handleErrorObservable);
   }
 
-  addProduto(produto: Produto): Promise<Produto>{
-    
+  addProduto(produto: Produto){
+
    this.isAddProduto = true;
-    return this.http.post(this.url+'/produtos', (produto), options).toPromise()
-      .then(this.extractData)
-      .catch(this.handleErrorPromise);
+    return this.http.post(this.url+'/produtos', JSON.stringify({produto:produto, chave : localStorage.getItem('chave').toString()})
+      , this.options).map(response => response);
+
   }
 
   novoProduto(): void{
@@ -75,10 +74,8 @@ export class ProdutoService {
   }
 
   atuliazarProduto(produto: Produto): Observable<Produto>{
-    let  body = {nome: produto.nomeProduto, marca: produto.marcaProduto, cor: produto.corProduto,
-      referencia: produto.referenciaProduto, quantidade: produto.quantProduto, descricao: produto.descricaoProduto};
 
-    return this.http.put('api/produto'+ '/' + produto.id, body).map( sucess =>
+    return this.http.put('api/produto'+ '/' + produto.id, this.options).map( sucess =>
      sucess.valueOf()).catch(this.handleError);
   }
 
