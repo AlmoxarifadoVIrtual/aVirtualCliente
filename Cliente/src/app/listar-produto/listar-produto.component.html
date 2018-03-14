@@ -1,46 +1,38 @@
 <h1>Produtos em estoque </h1>
 
-
-<ul>
-  <li *ngFor="let produto of produtoL | async" >
-    Id: {{produto.id}}, Name: {{produto.nome}}
-  </li>
-</ul>
-
-<h3>Book Details after "subscribe" to Observable </h3>
-<ul>
-  <li *ngFor="let produto of produtoo" >
-    Id: {{produto.id}}, Name: {{produto.nome}}
-  </li>
-</ul>
-
-<div *ngIf="errorMessage"> {{errorMessage}} </div>
-
 <table class="table table-striped">
   <tr>
-    <th>ID</th>
+
     <th>Nome do produto</th>
     <th>marca</th>
+    <th>Preço</th>
     <th>Quantidade</th>
+    <th>Un. Medida</th>
     <th>Descrição</th>
     <th>Cor</th>
     <th>Referência</th>
+    <th>Observação</th>
     <th> Ação </th>
   </tr>
 <tbody>
-  <tr *ngFor="let produto of produtoL">
-    <td>{{produto.id}}</td>
+  <tr *ngFor="let produto of minhaListaProduto">
+
     <td>{{produto.nome}}</td>
     <td>{{produto.marca}}</td>
+    <td>{{produto.preco}}</td>
     <td>{{produto.quantidade}}</td>
+    <td>{{produto.unidadeDeMedida}}</td>
     <td>{{produto.descricao}}</td>
     <td>{{produto.cor}}</td>
     <td>{{produto.referencia}}</td>
+    <td>{{produto.observacao}}</td>
     <td>
       <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
           <button type="button" class="btn btn-primary"  (click)="deletarItem(nome)">Remover</button>
+          <button type="button" class="btn btn-primary"  (click)="deletarItem(nome)">Atualizar</button>
         </div>
+
       </div>
     </td>
   </tr>

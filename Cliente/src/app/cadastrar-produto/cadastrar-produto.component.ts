@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from "../services/produto.service";
 import {Produto} from "../interfaces/produto";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -15,26 +16,35 @@ export class CadastrarProdutoComponent implements OnInit {
   error = ''
   isAddProduto = true;
   produto = new Produto();
-  subimisaoProduto = false;
-  idProduto: number;
+  sucesso: boolean = false;
+  idProduto = 1;
 
-  cadastrarProduto(){
-this.idProduto =+1;
-this.produto.id = this.idProduto;
+  cadastrarProduto(p : NgForm){
+    this.sucesso = true;
+    this.produto.id = this.idProduto;
     console.log(this.produto);
-    this.produtoService.addProduto(this.produto).subscribe( produto => {
-        this.resetar();
-      },
-      error => this.error = <any>error);;
+    this.produtoService.addProduto(this.produto);
+    this.idProduto = this.idProduto +1;
 
+  }
+  editarId(){
+    this.idProduto = this.idProduto +1;
   }
 
   newProduto(){
-    this.subimisaoProduto = false;
+    this.sucesso = false;
+    this.produto = new Produto();
+
+  }
+  enviar(): void {
+    this.sucesso = true;
   }
 
-  resetar (){
+
+
+  private resetar (){
     this.produto.nome = null;
+    this.produto.nome = "";
     this.produto.cor = null;
     this.produto.descricao = null;
     this.produto.observacao = null;

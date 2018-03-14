@@ -22,7 +22,7 @@ export class ListarProdutoComponent implements OnInit {
     }
 
 
-  //minhaListaProduto = this.produtoService.getAllProdutos();
+  minhaListaProduto = this.produtoService.produtos;
   //minhaListaProduto = this.produtoService.getAllProdutos();
 
 
@@ -30,10 +30,10 @@ export class ListarProdutoComponent implements OnInit {
 
   }
 
-  /*
+
   deletarItem(nome){
 
-    for ( var i =0; i < this.produtosLista; i++ ){
+    for ( var i =0; i < this.minhaListaProduto.length; i++ ){
 
       if( this.minhaListaProduto[i]["nome"] === nome ){
         this.minhaListaProduto.splice(i,1);
@@ -45,18 +45,13 @@ export class ListarProdutoComponent implements OnInit {
 
   }
 
-  deletePPP(produto: Produto): void {
-    //this.produto = this.produto.filter(h => h !== produto);
-    //this.heroService.deleteHero(hero).subscribe();
-  }
 
- */
 
   ngOnInit(): void {
-    this.produtoL = this.produtoService.getDosProduto();
-    this.produtoL.subscribe(
-      produto => this.produtoo = produto,
-      error =>  this.errorMessage = <any>error);
+    //this.produtoL = this.produtoService.getDosProduto();
+   // this.produtoL.subscribe(
+      //produto => this.produtoo = produto,
+     // error =>  this.errorMessage = <any>error);
   }
 
 

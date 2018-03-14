@@ -19,6 +19,7 @@ export class ProdutoService {
   options = new RequestOptions({headers: this.headers});
   url = this.urlConfig.getUrlService();
   erro:any;
+  produtos= [];
 
   constructor(private router: Router , private httpCliente: HttpClient, private loggin: LogginService, private http: Http,
               private urlConfig: ConfigService) {
@@ -59,8 +60,9 @@ export class ProdutoService {
   addProduto(produto: Produto){
 
    this.isAddProduto = true;
-    return this.http.post(this.url+'/produtos', JSON.stringify({produto:produto, chave : localStorage.getItem('chave').toString()})
-      , this.options).map(response => response);
+   this.produtos.push(produto);
+   // return this.http.post(this.url+'/produtos', JSON.stringify({produto:produto, chave : localStorage.getItem('chave').toString()})
+   //   , this.options).map(response => response);
 
   }
 

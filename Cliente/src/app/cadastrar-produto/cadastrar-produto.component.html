@@ -2,8 +2,8 @@
   <h1 class="text-center">Cadastro de Produtos</h1>
   <hr />
 
-  <div [hidden]="!isAddProduto" class="alert alert-success" role="alert" *ngIf="!isAddProduto">
-    Formulário enviado com sucesso! <br>
+  <div class="alert alert-success" role="alert" *ngIf="sucesso">
+    Formulário enviado com sucesso!
   </div>
 
   <form name="formPro" (ngSubmit)="cadastrarProduto()" #p="ngForm">
@@ -11,7 +11,7 @@
 
       <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" id="nome"  class="form-control"required name="nome" [(ngModel)]="produto.nome"  />
+        <input type="text" id="nome"  class="form-control" required name="nome" [(ngModel)]="produto.nome"  />
 
       </div>
 
@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <label for="preco">Preço</label>
-      <input type="text" id="preco" class="form-control" required name="preco" [(ngModel)]="produto.preco"  />
+      <input type="number" id="preco" class="form-control" required name="preco" [(ngModel)]="produto.preco"  />
     </div>
 
     <div>
@@ -63,17 +63,11 @@
 
     <div >
         <div class="col-sm-10 col-sm-offset-2">
-        <button type="submit" class="btn btn-primary success" [disabled]="!p.form.valid">Confirmar</button>
+          <button type="reset" class="btn btn-primary " (click)="newProduto()">Novo Produto</button>
+          <button type="submit" class="btn btn-primary success" [disabled]="!p.form.valid">Confirmar</button>
+        </div>
     </div>
-  </div>
   </form>
-</div>
-
-<div [hidden]="!subimisaoProduto">
-   <div class="btn-group ">
-      <h4>Produto cadastrado com sucesso!</h4>
-      <button class="btn btn-success" (click)="newProduto()">Novo Produto</button>
-   </div>
 </div>
 
 
