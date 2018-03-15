@@ -1,18 +1,15 @@
 <div  [hidden]="subimisaoProduto" class="col-md-6 col-md-offset-3">
   <h1 class="text-center">Cadastro de Produtos</h1>
-  <hr />
+
 
   <div class="alert alert-success" role="alert" *ngIf="sucesso">
     Formulário enviado com sucesso!
   </div>
 
   <form name="formPro" (ngSubmit)="cadastrarProduto()" #p="ngForm">
-
-
       <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" id="nome"  class="form-control" required name="nome" [(ngModel)]="produto.nome"  />
-
       </div>
 
     <div class="form-group">

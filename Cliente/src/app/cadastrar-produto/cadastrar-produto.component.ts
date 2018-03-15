@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from "../services/produto.service";
 import {Produto} from "../interfaces/produto";
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -18,8 +17,9 @@ export class CadastrarProdutoComponent implements OnInit {
   produto = new Produto();
   sucesso: boolean = false;
   idProduto = 1;
+  subimisaoProduto = false;
 
-  cadastrarProduto(p : NgForm){
+  cadastrarProduto(){
     this.sucesso = true;
     this.produto.id = this.idProduto;
     console.log(this.produto);
@@ -27,6 +27,7 @@ export class CadastrarProdutoComponent implements OnInit {
     this.idProduto = this.idProduto +1;
 
   }
+
   editarId(){
     this.idProduto = this.idProduto +1;
   }
@@ -34,13 +35,12 @@ export class CadastrarProdutoComponent implements OnInit {
   newProduto(){
     this.sucesso = false;
     this.produto = new Produto();
+    this.subimisaoProduto = false;
 
   }
   enviar(): void {
     this.sucesso = true;
   }
-
-
 
   private resetar (){
     this.produto.nome = null;
@@ -53,7 +53,6 @@ export class CadastrarProdutoComponent implements OnInit {
     this.produto.referencia = null;
     this.produto.unidadeDeMedida = null;
     this.produto.quantidade = null;
-
 
   }
 

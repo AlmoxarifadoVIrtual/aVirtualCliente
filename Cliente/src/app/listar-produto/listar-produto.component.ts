@@ -20,16 +20,8 @@ export class ListarProdutoComponent implements OnInit {
   constructor(private produtoService: ProdutoService ) {
 
     }
-
-
   minhaListaProduto = this.produtoService.produtos;
   //minhaListaProduto = this.produtoService.getAllProdutos();
-
-
-  getProduto(){
-
-  }
-
 
   deletarItem(nome){
 
@@ -44,8 +36,6 @@ export class ListarProdutoComponent implements OnInit {
     this.minhaListaProduto.pop();
 
   }
-
-
 
   ngOnInit(): void {
     //this.produtoL = this.produtoService.getDosProduto();
